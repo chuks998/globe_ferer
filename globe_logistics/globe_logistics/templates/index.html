@@ -1,0 +1,133 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Globe Farer Logistics</title>
+    <link rel="stylesheet" href="{% static 'css/landing_slider.css' %}">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <section
+        class="landing_page"
+        id="landingPage"
+        data-bg1="{% static 'images/bg1.jpg' %}"
+        data-bg2="{% static 'images/bg2.jpg' %}"
+        data-bg3="{% static 'images/bg3.jpg' %}"
+    >
+        <!-- Optionally, add overlay content here -->
+         <nav>
+            <div class="logo">
+                <img src="{% static 'images/img-logo-light.svg' %}" alt="">
+            </div>
+            <div class="auth" id="trackAuth">
+                <span class="flag-icon" aria-hidden="true">
+                  <svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:block;">
+                    <rect width="20" height="14" rx="2" fill="#FFD700"/>
+                    <rect y="7" width="20" height="7" rx="0" fill="#0057B7"/>
+                  </svg>
+                </span>
+                <span>Track your order</span>
+                <div class="dropdown" id="trackDropdown">
+                    <form action="{% url 'tracker' %}" method="GET">
+                        <label for="trackingCode">Enter your tracking code:</label>
+                        <input type="text" id="trackingCode" name="trackingCode" placeholder="Enter code..." required>
+                        <button type="submit">Track</button>
+                    </form>
+                </div>
+            </div>
+            <div class="hamburger" id="navHamburger" aria-label="Open menu" tabindex="0">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <div class="menu" id="navMenu">
+                <a href="#about">Home</a>
+                <a href="#services">Pages</a>
+                <a href="#contact">Services</a>
+                <a href="#contact">Contact</a>
+            </div>
+            
+         </nav>
+
+         <div class="view_box">
+            <div class="large_logo">
+            <img src="{% static 'images/img-logo-light.svg' %}" alt=" Globe Farer Logistics">
+            </div>
+            <div class="txt_for_logo">
+                <h1>We provide super fast and fuss-free delivery services</h1>
+                <small>We guarantee timely delivery and full visibility throughout the shipping process.</small>
+            </div>
+
+         </div>
+    </section>
+    <section class="about" id="about">
+        <div class="about_box">
+            <div class="about_txt">
+                <h2>Fast and reliable shipping services</h2>
+                <p>We are committed to providing you with the best shipping experience possible. Our team of experts is dedicated to ensuring that your packages arrive on time and in perfect condition.</p>
+                <p>With our state-of-the-art tracking system, you can monitor your shipment every step of the way. We offer a variety of shipping options to meet your needs, whether you need express delivery or standard shipping.</p>
+
+                <div class="link_txt">
+                    <span class="plus_circle" id="plusCircle">
+                        <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                            <circle cx="9" cy="9" r="9" fill="#FFD700"/>
+                            <rect x="8" y="4" width="2" height="10" rx="1" fill="#111"/>
+                            <rect x="4" y="8" width="10" height="2" rx="1" fill="#111"/>
+                        </svg>
+                    </span>
+                    <a href="#services">Learn more about our services</a>
+                </div>
+            </div>
+            <div class="about_img">
+                <img src="{% static 'images/img1.jpg' %}" alt="About Us">
+            </div>
+        </div>
+    </section>
+    <script src="{% static 'js/landing_slider.js' %}"></script>
+    <script>
+    // Toggle dropdown on click
+    document.addEventListener('DOMContentLoaded', function() {
+        const auth = document.getElementById('trackAuth');
+        auth.addEventListener('click', function(e) {
+            auth.classList.toggle('active');
+            e.stopPropagation();
+        });
+        document.addEventListener('click', function() {
+            auth.classList.remove('active');
+        });
+        document.getElementById('trackDropdown').addEventListener('click', function(e) {
+            e.stopPropagation();
+        });
+
+        // Hamburger menu for mobile
+        const hamburger = document.getElementById('navHamburger');
+        const menu = document.getElementById('navMenu');
+        hamburger.addEventListener('click', function(e) {
+            menu.classList.toggle('open');
+            hamburger.classList.toggle('open');
+            e.stopPropagation();
+        });
+        // Close menu when clicking outside
+        document.addEventListener('click', function() {
+            menu.classList.remove('open');
+            hamburger.classList.remove('open');
+        });
+        // Prevent menu click from closing
+        menu.addEventListener('click', function(e) {
+            e.stopPropagation();
+        });
+
+        // Plus icon rotate on click
+        const plus = document.getElementById('plusCircle');
+        if (plus) {
+            plus.addEventListener('click', function(e) {
+                plus.classList.toggle('rotated');
+                e.stopPropagation();
+            });
+        }
+    });
+    </script>
+</body>
+</html>
